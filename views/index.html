@@ -17,7 +17,7 @@
       <section>
 
 	<h2>Our burgers</h2>
-	<p>Choose what to order from our exquisite selection of high quality burgers</p>
+	<p>Choose what to order from our exquisite selection of high quality burgers, delivered right to your door.</p>
 
 	<table>
 	  <thead>
@@ -73,19 +73,29 @@
 
 	<div>
 	  <p>
-	  <label for="name">Full name</label></br>
-	  <input type="text" id="name" name="name" required="required" placeholder="First- and last name" />
-	  
+	    <label for="name">Full name</label></br>
+	    <input type="text" id="name" name="name" required="required" placeholder="First- and last name" />	    
 	  </p>
 	  <p>
-	  <label for="email">E-mail</label></br>
-	  <input type="email" id="email" name="email" required="required" placeholder="E-mail address" />
+	    <label for="email">E-mail</label></br>
+	    <input type="email" id="email" name="email" required="required" placeholder="E-mail address" />
 	  </p>
-	  <label for="street">Street</label></br>
-	  <input type="text" id="street" name="street" required="required" placeholder="Street name" />
 	  <p>
-	  <label for="house">Street</label></br>
-	  <input type="number" id="house" name="house" required="required" placeholder="House number" />
+	    <label for="street">Street</label></br>
+	    <input type="text" id="street" name="street" required="required" placeholder="Street name" />
+	  </p>
+	  <p>
+	    <label for="house">House</label></br>
+	    <input type="number" id="house" name="house" required="required" placeholder="House number" />
+	  </p>
+	  <p>
+	    <label for="payment">Payment method</label>
+	    <select id="payment" name="payment">
+	      <option selected="selected">Credit card</option>
+	      <option>Paypal</option>
+	      <option>Swish</option>
+	      <option>Bank transfer</option>
+	    </select>
 	  </p>
 	</div>
 	
