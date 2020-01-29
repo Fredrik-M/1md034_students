@@ -71,25 +71,25 @@
 	<h2>Customer details</h2>
 	<p>Enter your details here to complete your order</p>
 
-	<div>
+	<form>
 	  <p>
-	    <label for="name">Full name</label></br>
+	    <label for="name">Full name</label><br />
 	    <input type="text" id="name" name="name" required="required" placeholder="First- and last name" />	    
 	  </p>
 	  <p>
-	    <label for="email">E-mail</label></br>
+	    <label for="email">E-mail</label><br />
 	    <input type="email" id="email" name="email" required="required" placeholder="E-mail address" />
 	  </p>
 	  <p>
-	    <label for="street">Street</label></br>
+	    <label for="street">Street</label><br />
 	    <input type="text" id="street" name="street" required="required" placeholder="Street name" />
 	  </p>
 	  <p>
-	    <label for="house">House</label></br>
+	    <label for="house">House</label><br />
 	    <input type="number" id="house" name="house" required="required" placeholder="House number" />
 	  </p>
 	  <p>
-	    <label for="payment">Payment method</label>
+	    <label for="payment">Payment method</label><br />
 	    <select id="payment" name="payment">
 	      <option selected="selected">Credit card</option>
 	      <option>Paypal</option>
@@ -97,7 +97,18 @@
 	      <option>Bank transfer</option>
 	    </select>
 	  </p>
-	</div>
+	  <p>
+	    <span>Gender</span><br />
+	    <input type="radio" id="male" name="gender" value="male" />
+	    <label for="male">Male</label><br />
+	    <input type="radio" id="female" name="gender" value="female" />
+	    <label for="female">Female</label><br />
+	    <input type="radio" id="other" name="gender" value="other" />
+	    <label for="other">Other</label><br />
+	    <input type="radio" id="undisclosed" name="gender" value="undisclosed" checked="checked"/>
+	    <label for="undisclosed">Undisclosed</label><br />
+	  </p>
+	</form>
 	
       </section>
       
