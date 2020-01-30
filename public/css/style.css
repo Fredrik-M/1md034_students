@@ -5,8 +5,16 @@ body {
     font-size:110%;
 }
 
+section {
+    margin:8px;
+}
+
 .allergen {
     font-weight:bold;
+}
+
+h1 {
+    margin:5px 10px;
 }
 
 #burgers {
@@ -16,6 +24,10 @@ body {
 
 #order {
     
+}
+
+button {
+    margin:10px;
 }
 
 button:hover {
