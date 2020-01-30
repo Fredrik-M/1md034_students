@@ -1,5 +1,6 @@
 
 body {
+    margin:0 auto;
     font-family:arial;
     font-size:110%;
 }
@@ -20,4 +21,13 @@ body {
 button:hover {
     background-color:#90ee90;
     cursor:pointer;
+}
+
+table {
+    margin:0 auto;
+    width:95%;
+}
+
+table img {
+    width:95%;
 }
