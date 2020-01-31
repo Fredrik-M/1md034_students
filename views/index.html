@@ -3,15 +3,16 @@
 
   <head>
     <!--
-	<link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
     -->
-
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
-    <script src="js/js_script.js"></script>
-    <script src="js/vue_script.js"></script>
+    <script src="js/js_script.js" defer></script>
     <script src="https://vuejs.org/js/vue.js"></script>
-    
+    <script src="js/vue_script.js" defer></script>
+    <!--
+
+    -->
     <title>Bruhger King</title>
     <meta charset="utf-8"/>
 
@@ -32,54 +33,30 @@
 
 	<h2>Our burgers</h2>
 	<p>Choose what to order from our exquisite selection of high quality burgers, delivered right to your door.</p>
+	
+	<div class="grid">
 
-	<div class="wrapper">
-
-	  <div class="box a">
-	    The Special Boi
-	  </div>
-	  <div class="box a">
-	    The Porky Boi
-	  </div>
-	  <div class="box a">
-	    The Mystery Boi
+	  <div class="box a" v-for="b in menu">
+	    {{b.name}}
 	  </div>
 
-	  <div class="box b">
-	    <img src="img/burger_1.jpeg" alt="The Special Boi" />
-	  </div>
-	  <div class="box b">
-	    <img src="img/burger_2.jpeg" alt="The Porky Boi" />
-	  </div>
-	  <div class="box b">
-	    <img src="img/qmark.jpeg" alt="The Mystery Boi" />
+	  <div class="box b" v-for="b in menu">
+	    <img v-bind:src="b.img" v-bind:alt="b.name" />
+	    <div v-if="false">{{b.img}} {{b.name}}</div>
 	  </div>
 
-	  <div class="box c">
+	  <div class="box c" v-for="b in menu">
 	    <ul>
-	      <li>100% ground beef</li>
-	      <li>Gruyère cheese <span class="allergen">(lactose)</span></li>
-	      <li>Topped with a sunny side up</li>
-	      <li>Many calories</li>
-	    </ul>
-	  </div>
-	  <div class="box c">
-	    <ul>
-	      <li>Much pork</li>
-	      <li>Also has egg</li>
-	      <li class="allergen">Definitely not halal</li>
-	    </ul>
-	  </div>
-	  <div class="box c">
-	    <ul>
-	      <li>Order at your own risk</li>
-	      <li>May induce a bruh moment</li>
-	      <li class="allergen">Contains most known allergens</li>
+	      <li v-for="i in b.ingredients">{{i}}</li>
+	      <li v-if="b.allergens.length">
+		<span class="allergen">Contains {{b.get_allergens()}}</span>
+	      </li>
+	      <li>{{b.kCal}} kCal</li>
 	    </ul>
 	  </div>
 
 	</div>
-	
+
       </section>
 
       <section id="order">

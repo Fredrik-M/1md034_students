@@ -62,10 +62,11 @@ button:hover {
     cursor:pointer;
 }
 
-.wrapper {
+.grid {
     display:grid;
     grid-gap:0.5em;
     padding:0 0.5em;
+    grid-template-columns:repeat(5, 1fr);
 }
 
 .box {

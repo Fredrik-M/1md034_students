@@ -1,6 +1,6 @@
 
 const vm = new Vue({
-    el: '#myID',
+    el: ".grid",
     data: {
     	menu: [special, porky, mystery, boring, soy]
     }
