@@ -25,18 +25,24 @@ let boring = new menu_item("The boring Boi", ["The usual stuff"], ["Gluten", "La
 
 let soy = new menu_item("The Soy Boi", ["Soy beans"], [], 500);
 
+let container = document.getElementById('myID');
 
-console.log(special.get_name());
-console.log(special.get_kCal());
+let list = document.createElement('ul');
+let item = document.createElement('li');
 
-console.log(porky.get_name());
-console.log(porky.get_kCal());
+item.appendChild(document.createTextNode(special.get_name()));
+list.appendChild(item);
+item = document.createElement('li');
+item.appendChild(document.createTextNode(porky.get_name()));
+list.appendChild(item);
+item = document.createElement('li');
+item.appendChild(document.createTextNode(mystery.get_name()));
+list.appendChild(item);
+item = document.createElement('li');
+item.appendChild(document.createTextNode(boring.get_name()));
+list.appendChild(item);
+item = document.createElement('li');
+item.appendChild(document.createTextNode(soy.get_name()));
+list.appendChild(item);
 
-console.log(mystery.get_name());
-console.log(mystery.get_kCal());
-
-console.log(boring.get_name());
-console.log(boring.get_kCal());
-
-console.log(soy.get_name());
-console.log(soy.get_kCal());
+container.appendChild(list);
