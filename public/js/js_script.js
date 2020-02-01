@@ -1,10 +1,17 @@
 
-format_allergens = function(arr) {
-    let str = '';
-    for(var a of arr) {
-    	str += a + ', ';
-    }
-    return str.slice(0, str.length - 2);
+collect_details = function() {
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let street = document.getElementById("street").value;
+    let house = document.getElementById("house").value;
+    let payment_opts = document.getElementById("payment");
+    let payment = payment_opts.options[payment_opts.selectedIndex].text;
+    let gender = document.querySelector("input[name='gender']:checked").value;
+
+    let tmp = [name, email, street, house, payment, gender];
+    console.log(tmp);
+    
+    return [name, email, street, house, payment, gender];
 }
 
 let section = document.getElementById("burgers");
@@ -35,7 +42,7 @@ for(var b of menu) {
 	item = document.createElement("li");
 	let allerg = document.createElement("span");
 	allerg.className = "allergen";
-	allerg.innerHTML = "Contains " + format_allergens(b.allergens);
+	allerg.innerHTML = "Contains " + b.allergens;
 	item.appendChild(allerg);
 	list.appendChild(item);	
     }
@@ -48,4 +55,3 @@ for(var b of menu) {
 }
 
 section.appendChild(grid);
-

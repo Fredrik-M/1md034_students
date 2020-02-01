@@ -8,11 +8,10 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
     <script src="js/menu.js"></script>
-    <script src="js/js_script.js" defer></script>
     <script src="https://vuejs.org/js/vue.js"></script>
     <script src="js/vue_script.js" defer></script>
     <!--
-
+    <script src="js/js_script.js" defer></script>
     -->
     <title>Bruhger King</title>
     <meta charset="utf-8"/>
@@ -43,14 +42,14 @@
 
 	  <div class="box b" v-for="b in menu">
 	    <img v-bind:src="b.img" v-bind:alt="b.name" />
-	    <div v-if="false">{{b.img}} {{b.name}}</div>
 	  </div>
 
 	  <div class="box c" v-for="b in menu">
+	    <input type="checkbox" v-bind:value="b.name" v-model="selected"> Add to my order</input>
 	    <ul>
 	      <li v-for="i in b.ingredients">{{i}}</li>
 	      <li v-if="b.allergens.length">
-		<span class="allergen">Contains {{allergens}}</span>
+		<span class="allergen">Contains {{b.allergens}}</span>
 	      </li>
 	      <li>{{b.kCal}} kCal</li>
 	    </ul>
@@ -62,53 +61,83 @@
 
       <section id="order">
 
-	<h2>Customer details</h2>
-	<p>Enter your details here to complete your order</p>
+	<template v-if="!order_placed">
 
-	<form>
-	  <p>
-	    <label for="name">Full name</label><br />
-	    <input type="text" id="name" name="name" required="required" placeholder="First- and last name" />	    
-	  </p>
-	  <p>
-	    <label for="email">E-mail</label><br />
-	    <input type="email" id="email" name="email" required="required" placeholder="E-mail address" />
-	  </p>
-	  <p>
-	    <label for="street">Street</label><br />
-	    <input type="text" id="street" name="street" required="required" placeholder="Street name" />
-	  </p>
-	  <p>
-	    <label for="house">House</label><br />
-	    <input type="number" id="house" name="house" required="required" placeholder="House number" />
-	  </p>
-	  <p>
-	    <label for="payment">Payment method</label><br />
-	    <select id="payment" name="payment">
-	      <option selected="selected">Credit card</option>
-	      <option>Paypal</option>
-	      <option>Swish</option>
-	      <option>Bank transfer</option>
-	    </select>
-	  </p>
-	  <p>
-	    <span>Gender</span><br />
-	    <input type="radio" id="male" name="gender" value="male" />
-	    <label for="male">Male</label><br />
-	    <input type="radio" id="female" name="gender" value="female" />
-	    <label for="female">Female</label><br />
-	    <input type="radio" id="other" name="gender" value="other" />
-	    <label for="other">Other</label><br />
-	    <input type="radio" id="undisclosed" name="gender" value="undisclosed" checked="checked"/>
-	    <label for="undisclosed">Undisclosed</label><br />
-	  </p>
-	</form>
+	  <div>
+	    <h2>Customer details</h2>
+	    <p>Enter your details here to complete your order</p>
+	  </div>
+	  
+	  <form>
+	    <p>
+	      <label for="name">Full name</label><br />
+	      <input v-model="name"
+		     type="text" id="name" name="name" required="required"
+		     placeholder="First- and last name" />	    
+	    </p>
+	    <p>
+	      <label for="email">E-mail</label><br />
+	      <input v-model="email"
+		     type="email" id="email" name="email" required="required"
+		     placeholder="E-mail address" />
+	    </p>
+	    <p>
+	      <label for="street">Street</label><br />
+	      <input v-model="street"
+		     type="text" id="street" name="street" required="required"
+		     placeholder="Street name" />
+	    </p>
+	    <p>
+	      <label for="house">House</label><br />
+	      <input v-model="house"
+		     type="number" id="house" name="house" required="required"
+		     placeholder="House number" />
+	    </p>
+	    <p>
+	      <label for="payment">Payment method</label><br />
+	      <select v-model="payment" id="payment" name="payment">
+		<option selected="selected">Credit card</option>
+		<option>Paypal</option>
+		<option>Swish</option>
+		<option>Bank transfer</option>
+	      </select>
+	    </p>
+	    <p>
+	      <span>Gender</span><br />
+	      <input v-model="gender" type="radio" id="male" name="gender" value="male" />
+	      <label for="male">Male</label><br />
+	      <input v-model="gender" type="radio" id="female" name="gender" value="female" />
+	      <label for="female">Female</label><br />
+	      <input v-model="gender" type="radio" id="other" name="gender" value="other" />
+	      <label for="other">Other</label><br />
+	      <input v-model="gender" type="radio" id="undisclosed" name="gender" value="undisclosed"
+		     checked="checked"/>
+	      <label for="undisclosed">Undisclosed</label><br />
+	    </p>
+	  </form>
 
-	<button type="submit">
-	  <img src="img/button.jpeg" />
-	  <span>Place order</span>
-	</button>
+	  <button type="submit" v-on:click="order()">
+	    <img src="img/button.jpeg" />
+	    <span>Place order</span>
+	  </button>
+
+	</template>
 	
+	<div id="ty" v-if="order_placed">
+	  <h2>Thank you for your order!</h2>
+	  <ul>
+	    <li v-for="b in this_order">{{b}}</li>
+	  </ul>
+	  <p>
+	    {{name}} ({{gender}})<br />
+	    {{email}}<br />
+	    {{street}} {{house}}<br />
+	    Paid with {{payment}}<br />
+	  </p>
+	  <br />
+	  <p>Unfortunately, it will never be delivered, lol.</p>
+	</div>
+
       </section>
       
     </main>
