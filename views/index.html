@@ -9,6 +9,7 @@
 
     <script src="js/menu.js"></script>
     <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="/socket.io/socket.io.js" defer></script>
     <script src="js/vue_script.js" defer></script>
     <!--
     <script src="js/js_script.js" defer></script>
@@ -81,18 +82,31 @@
 		     type="email" id="email" name="email" required="required"
 		     placeholder="E-mail address" />
 	    </p>
-	    <p>
-	      <label for="street">Street</label><br />
-	      <input v-model="street"
-		     type="text" id="street" name="street" required="required"
-		     placeholder="Street name" />
-	    </p>
-	    <p>
-	      <label for="house">House</label><br />
-	      <input v-model="house"
-		     type="number" id="house" name="house" required="required"
-		     placeholder="House number" />
-	    </p>
+
+	    <!-- <p> -->
+	    <!--   <label for="street">Street</label><br /> -->
+	    <!--   <input v-model="street" -->
+	    <!-- 	     type="text" id="street" name="street" required="required" -->
+	    <!-- 	     placeholder="Street name" /> -->
+	    <!-- </p> -->
+	    <!-- <p> -->
+	    <!--   <label for="house">House</label><br /> -->
+	    <!--   <input v-model="house" -->
+	    <!-- 	     type="number" id="house" name="house" required="required" -->
+	    <!-- 	     placeholder="House number" /> -->
+	    <!-- </p> -->
+
+	    <div id="vb_text">Delivery location</div>
+	    <div class="view-box">
+	      <div id="dots" v-on:click="addOrder">
+		<div 
+		   v-for="(order, key) in orders"
+		   v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
+		  {{key}}
+		</div>
+	      </div>
+	    </div>
+	    
 	    <p>
 	      <label for="payment">Payment method</label><br />
 	      <select v-model="payment" id="payment" name="payment">
