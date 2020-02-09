@@ -9,55 +9,41 @@ const vm_1 = new Vue({
     }
 })
 
-let order = ["Something", "Something else"]
-
 const vm_2 = new Vue({
     el: "#order",
     data: {
 	order_placed: false,
-	orders: {},
-	this_order: [],
+	order_id: 0,
+	this_order: {
+	    orderId: 0,
+	    details: { x: -20, y: -20 },
+	    orderItems: []
+	},
 	name: "",
 	email: "",
 	payment: "Credit card",
 	gender: "undisclosed"
     },
-    created: function() {
-        socket.on('initialize',
-		  function(data) { this.orders = data.orders; }.bind(this)
-		 );
-
-	socket.on('currentQueue',
-		  function(data) { this.orders = data.orders; }.bind(this)
-		 );
-    },
     methods: {
 	order: function() {
 	    this.order_placed = true;
-	    this.this_order = vm_1.selected;
+	    this.this_order.orderId = ++this.order_id;
+	    this.this_order.orderItems = vm_1.selected;
+	    this.addOrder();
 	    vm_1.selected = [];
 	},
-	getNext: function() {
-	    let lastOrder = Object.keys(this.orders).reduce(function(last, next) {
-		return Math.max(last, next); }, 0);
-
-	    return lastOrder + 1;
-	},
-	addOrder: function(event) {
+	update_location: function(event) {
 	    let offset = {
 		x: event.currentTarget.getBoundingClientRect().left,
 		y: event.currentTarget.getBoundingClientRect().top,
 	    };
 
-	    socket.emit('addOrder', {
-		orderId: this.getNext(),
-		details: {
-		    x: event.clientX - 10 - offset.x,
-		    y: event.clientY - 10 - offset.y,
-		},
-		orderItems: ['Beans', 'Curry'],
-	    });
-	}
+	    this.this_order.details.x = event.clientX - 6 - offset.x;
+	    this.this_order.details.y = event.clientY - 6 - offset.y;
+	},
+	addOrder: function() {
+	    socket.emit('addOrder', this.this_order);
+	},
     }
 })
 

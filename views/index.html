@@ -98,11 +98,9 @@
 
 	    <div id="vb_text">Delivery location</div>
 	    <div class="view-box">
-	      <div id="dots" v-on:click="addOrder">
-		<div 
-		   v-for="(order, key) in orders"
-		   v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
-		  {{key}}
+	      <div id="dots" v-on:click="update_location">
+		<div v-bind:style="{ left: this_order.details.x + 'px', 
+				   top: this_order.details.y + 'px'}">
 		</div>
 	      </div>
 	    </div>
@@ -130,7 +128,7 @@
 	    </p>
 	  </form>
 
-	  <button type="submit" v-on:click="order()">
+	  <button type="submit" v-on:click="order">
 	    <img src="img/button.jpeg" />
 	    <span>Place order</span>
 	  </button>
@@ -140,12 +138,11 @@
 	<div id="ty" v-if="order_placed">
 	  <h2>Thank you for your order!</h2>
 	  <ul>
-	    <li v-for="b in this_order">{{b}}</li>
+	    <li v-for="b in this_order.orderItems">{{b}}</li>
 	  </ul>
 	  <p>
 	    {{name}} ({{gender}})<br />
 	    {{email}}<br />
-	    {{street}} {{house}}<br />
 	    Paid with {{payment}}<br />
 	  </p>
 	  <br />
