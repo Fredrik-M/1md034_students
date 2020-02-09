@@ -72,42 +72,29 @@
 	  <form>
 	    <p>
 	      <label for="name">Full name</label><br />
-	      <input v-model="name"
+	      <input v-model="this_order.details.name"
 		     type="text" id="name" name="name" required="required"
 		     placeholder="First- and last name" />	    
 	    </p>
 	    <p>
 	      <label for="email">E-mail</label><br />
-	      <input v-model="email"
+	      <input v-model="this_order.details.email"
 		     type="email" id="email" name="email" required="required"
 		     placeholder="E-mail address" />
 	    </p>
 
-	    <!-- <p> -->
-	    <!--   <label for="street">Street</label><br /> -->
-	    <!--   <input v-model="street" -->
-	    <!-- 	     type="text" id="street" name="street" required="required" -->
-	    <!-- 	     placeholder="Street name" /> -->
-	    <!-- </p> -->
-	    <!-- <p> -->
-	    <!--   <label for="house">House</label><br /> -->
-	    <!--   <input v-model="house" -->
-	    <!-- 	     type="number" id="house" name="house" required="required" -->
-	    <!-- 	     placeholder="House number" /> -->
-	    <!-- </p> -->
-
 	    <div id="vb_text">Delivery location</div>
 	    <div class="view-box">
 	      <div id="dots" v-on:click="update_location">
-		<div v-bind:style="{ left: this_order.details.x + 'px', 
-				   top: this_order.details.y + 'px'}">
+		<div v-bind:style="{ left: this_order.location.x + 'px', 
+				   top: this_order.location.y + 'px'}">
 		</div>
 	      </div>
 	    </div>
 	    
 	    <p>
 	      <label for="payment">Payment method</label><br />
-	      <select v-model="payment" id="payment" name="payment">
+	      <select v-model="this_order.details.payment" id="payment" name="payment">
 		<option selected="selected">Credit card</option>
 		<option>Paypal</option>
 		<option>Swish</option>
@@ -116,14 +103,17 @@
 	    </p>
 	    <p>
 	      <span>Gender</span><br />
-	      <input v-model="gender" type="radio" id="male" name="gender" value="male" />
+	      <input v-model="this_order.details.gender"
+		     type="radio" id="male" name="gender" value="male" />
 	      <label for="male">Male</label><br />
-	      <input v-model="gender" type="radio" id="female" name="gender" value="female" />
+	      <input v-model="this_order.details.gender"
+		     type="radio" id="female" name="gender" value="female" />
 	      <label for="female">Female</label><br />
-	      <input v-model="gender" type="radio" id="other" name="gender" value="other" />
+	      <input v-model="this_order.details.gender"
+		     type="radio" id="other" name="gender" value="other" />
 	      <label for="other">Other</label><br />
-	      <input v-model="gender" type="radio" id="undisclosed" name="gender" value="undisclosed"
-		     checked="checked"/>
+	      <input v-model="this_order.details.gender"
+		     type="radio" id="undisclosed" name="gender" value="undisclosed" checked="checked"/>
 	      <label for="undisclosed">Undisclosed</label><br />
 	    </p>
 	  </form>
@@ -141,12 +131,14 @@
 	    <li v-for="b in this_order.orderItems">{{b}}</li>
 	  </ul>
 	  <p>
-	    {{name}} ({{gender}})<br />
-	    {{email}}<br />
-	    Paid with {{payment}}<br />
+	    {{ this_order.details.name }} ({{ this_order.details.gender }})<br />
+	    {{ this_order.details.email }}<br />
+	    Paid with {{ this_order.details.payment }}<br />
 	  </p>
-	  <br />
 	  <p>Unfortunately, it will never be delivered, lol.</p>
+	  <button type="submit" v-on:click="reset">
+	    <span>New order</span>
+	  </button>
 	</div>
 
       </section>

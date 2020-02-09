@@ -16,13 +16,15 @@ const vm_2 = new Vue({
 	order_id: 0,
 	this_order: {
 	    orderId: 0,
-	    details: { x: -20, y: -20 },
+	    location: { x: -20, y: -20 },
+	    details: {
+		name: "",
+		email: "",
+		payment: "Credit card",
+		gender: "undisclosed"
+	    },
 	    orderItems: []
 	},
-	name: "",
-	email: "",
-	payment: "Credit card",
-	gender: "undisclosed"
     },
     methods: {
 	order: function() {
@@ -38,12 +40,15 @@ const vm_2 = new Vue({
 		y: event.currentTarget.getBoundingClientRect().top,
 	    };
 
-	    this.this_order.details.x = event.clientX - 6 - offset.x;
-	    this.this_order.details.y = event.clientY - 6 - offset.y;
+	    this.this_order.location.x = event.clientX - 6 - offset.x;
+	    this.this_order.location.y = event.clientY - 6 - offset.y;
 	},
 	addOrder: function() {
 	    socket.emit('addOrder', this.this_order);
 	},
+	reset: function() {
+	    this.order_placed = false;
+	}
     }
 })
 
